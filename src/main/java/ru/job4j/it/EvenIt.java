@@ -22,11 +22,7 @@ public class EvenIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        boolean rsl = false;
-        if (count < numbers.length && evenNum(numbers)) {
-            rsl = true;
-        }
-        return rsl;
+        return count < numbers.length && evenNum(numbers);
     }
 
     @Override
