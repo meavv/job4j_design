@@ -1,0 +1,66 @@
+package ru.job4j.generics;
+
+import org.junit.Test;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+
+public class SimpleArrayTest {
+
+
+    @Test
+    public void add() {
+     Object[] t = new Object[3];
+     Object object = new Object();
+     Object object1 = new Object();
+     SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+     simpleArray.add(object);
+     simpleArray.add(object1);
+     assertArrayEquals(new Object[]{object, object1, null}, t);
+    }
+
+
+    @Test
+    public void set() {
+        Object[] t = new Object[3];
+        Object object = new Object();
+        Object object1 = new Object();
+        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+        simpleArray.add(object);
+        simpleArray.add(object1);
+        simpleArray.set(0, object1);
+        assertArrayEquals(new Object[]{object1, object1, null}, t);
+    }
+
+    @Test
+    public void remove() {
+        Object[] t = new Object[3];
+        Object object = new Object();
+        Object object1 = new Object();
+        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+        simpleArray.add(object);
+        simpleArray.add(object1);
+        assertArrayEquals(new Object[]{object1, null}, simpleArray.remove(0));
+    }
+
+    @Test
+    public void get() {
+        Object[] t = new Object[3];
+        Object object = new Object();
+        Object object1 = new Object();
+        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+        simpleArray.add(object);
+        simpleArray.add(object1);
+        assertEquals(simpleArray.get(1), object1);
+    }
+
+    @Test
+    public void iterator() {
+        Object[] t = new Object[3];
+        Object object = new Object();
+        Object object1 = new Object();
+        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+        simpleArray.add(object);
+        simpleArray.add(object1);
+    }
+}
