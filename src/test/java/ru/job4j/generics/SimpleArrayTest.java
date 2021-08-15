@@ -2,6 +2,8 @@ package ru.job4j.generics;
 
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -54,13 +56,16 @@ public class SimpleArrayTest {
         assertEquals(simpleArray.get(1), object1);
     }
 
-    @Test
-    public void iterator() {
+       @Test
+    public void whenReadSequence() {
         Object[] t = new Object[3];
-        Object object = new Object();
-        Object object1 = new Object();
-        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
-        simpleArray.add(object);
-        simpleArray.add(object1);
+        SimpleArray<Integer> it = new SimpleArray<>(t);
+        it.add(5);
+        it.add(4);
+        it.add(8);
+        Iterator iterator = it.iterator();
+        assertThat(iterator.next(), is(5));
+        assertThat(iterator.next(), is(4));
+        assertThat(iterator.next(), is(8));
     }
 }
