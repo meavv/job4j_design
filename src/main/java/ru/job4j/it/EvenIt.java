@@ -11,27 +11,23 @@ public class EvenIt implements Iterator<Integer> {
         this.numbers = numbers;
     }
 
-    public boolean evenNum(int[] numbers) {
+
+    @Override
+    public boolean hasNext() {
         for (int i = count; i < numbers.length; i++) {
             if (numbers[i] % 2 == 0) {
                 return true;
+            } else {
+                count++;
             }
         }
         return false;
     }
 
     @Override
-    public boolean hasNext() {
-        return count < numbers.length && evenNum(numbers);
-    }
-
-    @Override
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
-        }
-        if (numbers[count] % 2 != 0) {
-            count++;
         }
         return numbers[count++];
     }
