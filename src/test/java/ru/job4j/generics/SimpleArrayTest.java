@@ -40,10 +40,12 @@ public class SimpleArrayTest {
         Object object = new Object();
         Object object1 = new Object();
         SimpleArray<Object> simpleArray = new SimpleArray<>(t);
-        simpleArray.add(object);
-        simpleArray.add(object1);
-        assertArrayEquals(new Object[]{object1, null}, simpleArray.remove(0));
+        simpleArray.add(1);
+        simpleArray.add(2);
+        simpleArray.add(3);
+        assertArrayEquals(new Object[]{2, 3}, simpleArray.remove(0));
     }
+
 
     @Test
     public void get() {

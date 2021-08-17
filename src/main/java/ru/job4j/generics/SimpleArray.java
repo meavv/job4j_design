@@ -24,13 +24,9 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public Object[] remove(int index) {
         index = Objects.checkIndex(index, size);
-        Object[] i2 = new Object[index];
-        Object[] i3 = new Object[t.length - index - 1];
-        System.arraycopy(t, 0, i2, 0, index);
-        System.arraycopy(t, index + 1, i3, 0, t.length - index - 1);
-        Object[] r = new Object[i2.length + i3.length];
-        System.arraycopy(i2, 0, r, 0, i2.length);
-        System.arraycopy(i3, 0, r, i2.length, i3.length);
+        Object[] r = new Object[t.length - 1];
+        System.arraycopy(t, index + 1, t, index, size - index - 1);
+        System.arraycopy(t, 0, r, 0, r.length);
         return r;
     }
 
