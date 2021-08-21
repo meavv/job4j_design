@@ -1,33 +1,58 @@
 
 package ru.job4j.collection;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
-public class SimpleArray<T> implements Iterable<T> {
+public class SimpleArrayList<T> implements List<T> {
 
-    int size = 0;
-    int def = 5;
-    int modCount = 0;
-    Object[] container = new Object[def];
+    private int size;
+    private int def = 1;
+    private int modCount;
+    private Object[] container;
 
+
+    public SimpleArrayList(int capacity) {
+        this.container = (T[]) new Object[capacity];
+    }
+
+    @Override
     public T get(int index) {
         index = Objects.checkIndex(index, size);
         return (T) container[index];
     }
 
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     public void add(T model) {
         if (size <= def) {
-            Object[] temp = new Object[def * 2];
-            System.arraycopy(container, 0, temp, 0, def);
-            container = temp;
+            container = Arrays.copyOf(container, def);
             def = def * 2;
         }
         container[size] = model;
         size++;
         modCount++;
+    }
+
+    @Override
+    public T set(int index, T newValue) {
+        index = Objects.checkIndex(index, size);
+        var oldValue = container[index];
+        container[index] = newValue;
+        return (T) oldValue;
+    }
+
+    @Override
+    public T remove(int index) {
+        index = Objects.checkIndex(index, size);
+        var temp = (T) container[index];
+        System.arraycopy(container, index + 1, container, index, size - index - 1);
+        size--;
+        modCount++;
+        return temp;
     }
 
     @Override
