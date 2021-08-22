@@ -12,13 +12,13 @@ public class SimpleArrayTest {
 
     @Test
     public void add() {
-     Object[] t = new Object[3];
-     Object object = new Object();
-     Object object1 = new Object();
-     SimpleArray<Object> simpleArray = new SimpleArray<>(t);
-     simpleArray.add(object);
-     simpleArray.add(object1);
-     assertArrayEquals(new Object[]{object, object1, null}, t);
+        Object[] t = new Object[3];
+        Object object = new Object();
+        Object object1 = new Object();
+        SimpleArray<Object> simpleArray = new SimpleArray<>(t);
+        simpleArray.add(object);
+        simpleArray.add(object1);
+        assertArrayEquals(new Object[]{object, object1, null}, t);
     }
 
 
@@ -58,7 +58,7 @@ public class SimpleArrayTest {
         assertEquals(simpleArray.get(1), object1);
     }
 
-       @Test
+    @Test
     public void whenReadSequence() {
         Object[] t = new Object[3];
         SimpleArray<Integer> it = new SimpleArray<>(t);

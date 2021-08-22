@@ -6,7 +6,6 @@ import java.util.*;
 public class SimpleArrayList<T> implements List<T> {
 
     private int size;
-    private int def = 1;
     private int modCount;
     private Object[] container;
 
@@ -26,12 +25,15 @@ public class SimpleArrayList<T> implements List<T> {
         return size;
     }
 
+    public void grow() {
+        if (size <= size + 1) {
+            container = Arrays.copyOf(container, size + (size + 1));
+        }
+    }
+
     @Override
     public void add(T model) {
-        if (size <= def) {
-            container = Arrays.copyOf(container, def);
-            def = def * 2;
-        }
+        grow();
         container[size] = model;
         size++;
         modCount++;
