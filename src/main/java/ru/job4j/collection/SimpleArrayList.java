@@ -26,8 +26,8 @@ public class SimpleArrayList<T> implements List<T> {
     }
 
     public void grow() {
-        if (size <= size + 1) {
-            container = Arrays.copyOf(container, size + (size + 1));
+        if (size <= container.length) {
+            container = Arrays.copyOf(container, 2 * container.length);
         }
     }
 
