@@ -81,7 +81,8 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(it++);
+                it++;
+                return first.getNext().getItem();
             }
         };
     }
