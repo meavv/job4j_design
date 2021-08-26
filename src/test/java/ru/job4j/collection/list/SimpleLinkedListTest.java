@@ -4,6 +4,7 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
@@ -59,6 +60,38 @@ public class SimpleLinkedListTest {
         assertThat(second.hasNext(), Is.is(true));
         assertThat(second.next(), Is.is(2));
         assertThat(second.hasNext(), Is.is(false));
+    }
+
+    @Test
+    public void whenGetIterator1() {
+        List<Integer> list = new SimpleLinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(2);
+        list.add(2);
+
+        Iterator<Integer> first = list.iterator();
+        assertThat(first.hasNext(), Is.is(true));
+        assertThat(first.next(), Is.is(1));
+        assertThat(first.hasNext(), Is.is(true));
+        assertThat(first.next(), Is.is(2));
+        assertThat(first.hasNext(), Is.is(true));
+        assertThat(first.next(), Is.is(2));
+        assertThat(first.hasNext(), Is.is(true));
+        assertThat(first.next(), Is.is(2));
+        assertThat(first.hasNext(), Is.is(true));
+        assertThat(first.next(), Is.is(2));
+        assertThat(first.hasNext(), Is.is(false));
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void whenGetIterator2() {
+        List<Integer> list = new SimpleLinkedList<>();
+
+        Iterator<Integer> first = list.iterator();
+        assertThat(first.hasNext(), Is.is(false));
+        assertThat(first.next(), Is.is(1));
     }
 
 }
