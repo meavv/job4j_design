@@ -15,7 +15,6 @@ public class SimpleQueue<T> {
             }
             outSize--;
             return out.pop();
-
         }
         return out.pop();
     }

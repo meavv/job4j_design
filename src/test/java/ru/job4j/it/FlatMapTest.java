@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class FlatMapTest {
+
     @Test
     public void whenDiffNext() {
         Iterator<Iterator<Integer>> data = List.of(
