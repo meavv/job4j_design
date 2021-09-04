@@ -18,9 +18,9 @@ public class User {
     }
 
     public static void main(String[] args) {
-        Calendar calendar = new GregorianCalendar(2017, 0 , 25);
-        User user1 = new User("Q",1,calendar);
-        User user2 = new User("Q",1,calendar);
+        Calendar calendar = new GregorianCalendar(2017, 0, 25);
+        User user1 = new User("Q", 1, calendar);
+        User user2 = new User("Q", 1, calendar);
         map.put(user1, new Object());
         map.put(user2, new Object());
         System.out.println(user1.hashCode());
