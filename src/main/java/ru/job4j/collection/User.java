@@ -1,15 +1,17 @@
 package ru.job4j.collection;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class User {
     private String name;
     private int children;
     private Calendar birthday;
     static Map<User, Object> map = new HashMap<>();
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 
     public User(String name, int children, Calendar birthday) {
         this.name = name;
@@ -25,6 +27,7 @@ public class User {
         map.put(user2, new Object());
         System.out.println(user1.hashCode());
         System.out.println(user2.hashCode());
+        System.out.println(user1.equals(user2));
         System.out.println(map);
     }
 
