@@ -18,7 +18,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (count > LOAD_FACTOR * capacity) {
             expand();
         }
-        MapEntry <K,V> mapEntry = new MapEntry<>(key, value);
+        MapEntry<K, V> mapEntry = new MapEntry<>(key, value);
         int index = indexFor(hash(key.hashCode()));
         if (table[index] == null) {
             table[index] = mapEntry;
