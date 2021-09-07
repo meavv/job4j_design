@@ -3,8 +3,8 @@ package ru.job4j.collection.map;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.core.Is.is;
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 public class SimpleMapTest {
@@ -12,7 +12,7 @@ public class SimpleMapTest {
     @Test
     public void put() {
         SimpleMap<Integer, Integer> simpleMap = new SimpleMap<>();
-        assertTrue(simpleMap.put(1, 1));
+        assertTrue(simpleMap.put(15, 1));
         assertTrue(simpleMap.put(2, 2));
         assertTrue(simpleMap.put(3, 3));
     }
@@ -41,6 +41,7 @@ public class SimpleMapTest {
         assertTrue(simpleMap.put(10, 3));
         assertTrue(simpleMap.put(11, 3));
         assertThat(simpleMap.get(1), Is.is(10));
+        assertThat(simpleMap.get(11), Is.is(3));
     }
 
     @Test
@@ -76,5 +77,24 @@ public class SimpleMapTest {
         assertTrue(simpleMap.put(1, 1));
         assertFalse(simpleMap.remove(2));
         assertThat(simpleMap.get(1), Is.is(1));
+    }
+
+    @Test
+    public void iteratorTest() {
+        SimpleMap<Integer, Integer> simpleMap = new SimpleMap<>();
+        assertTrue(simpleMap.put(1, 10));
+        assertTrue(simpleMap.put(2, 10));
+        assertTrue(simpleMap.put(3, 10));
+        assertTrue(simpleMap.put(4, 10));
+        Iterator iterator = simpleMap.iterator();
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.next(), Is.is(1));
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.next(), Is.is(2));
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.next(), Is.is(3));
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.next(), Is.is(4));
+        assertFalse(iterator.hasNext());
     }
 }
