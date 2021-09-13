@@ -4,19 +4,15 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        List<Integer> numbers = new ArrayList<>();
-        for (String line : Files.readAllLines(Paths.get("input.txt"))) {
-            for (String part : line.split("\\s+")) {
-                Integer i = Integer.valueOf(part);
-                numbers.add(i);
-            }
-        }
-        PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
-        writer.println(numbers.stream().mapToInt(a -> a).sum());
-        writer.close();
+        Map<String, String> values = new HashMap<String, String>();
+        String s = "hibernate.connection.password=password";
+        values.put(s.substring(0, s.indexOf("=")), s.substring(s.indexOf("=") + 1));
+        System.out.println(values.get("hibernate.connection.password"));
     }
 }
