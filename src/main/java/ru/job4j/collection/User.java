@@ -33,9 +33,9 @@ public class User {
         System.out.println(hash(user1));
     }
 
-    public static final int hash(User key) {
-        int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    public static int hash(User key) {
+        int h = key.hashCode();
+        return (key == null) ? 0 : (h) ^ (h >>> 16);
     }
 
     public static String binary(int num) {
