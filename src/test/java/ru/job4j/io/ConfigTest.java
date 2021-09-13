@@ -11,24 +11,24 @@ public class ConfigTest {
     public void whenPairWithoutComment() {
         Config config = new Config("data/pair_without_comment.properties");
         config.load();
-        assertThat(config.value("name"),is("Qwe"));
+        assertThat(config.value("name"), is("Qwe"));
     }
 
     @Test
     public void whenEmptyAndCommitString() {
         Config config = new Config("data/emptyString");
         config.load();
-        assertThat(config.value("name"),is("Qwe"));
+        assertThat(config.value("name"), is("Qwe"));
     }
 
     @Test
-    public void PostgreSQL() {
+    public void testPostgre() {
         Config config = new Config("app.properties");
         config.load();
-        assertThat(config.value("hibernate.dialect"),is("org.hibernate.dialect.PostgreSQLDialect"));
-        assertThat(config.value("hibernate.connection.driver_class"),is("org.postgresql.Driver"));
-        assertThat(config.value("hibernate.connection.username"),is("postgres"));
-        assertThat(config.value("hibernate.connection.password"),is("password"));
+        assertThat(config.value("hibernate.dialect"), is("org.hibernate.dialect.PostgreSQLDialect"));
+        assertThat(config.value("hibernate.connection.driver_class"), is("org.postgresql.Driver"));
+        assertThat(config.value("hibernate.connection.username"), is("postgres"));
+        assertThat(config.value("hibernate.connection.password"), is("password"));
     }
 
 
