@@ -17,7 +17,8 @@ public class Analizy {
                     s.add(line);
                 }
             }
-            out.println(s.get(0).substring(4) + System.lineSeparator() + s.get(s.size() - 1).substring(4));
+            out.println(s.get(0).substring(4)
+                    + System.lineSeparator() + s.get(s.size() - 1).substring(4));
         } catch (IOException e) {
             e.printStackTrace();
         }
