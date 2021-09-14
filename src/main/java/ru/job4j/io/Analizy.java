@@ -5,20 +5,28 @@ import java.util.*;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        List<String> s = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(source));
              PrintWriter out = new PrintWriter(
                      new BufferedOutputStream(new FileOutputStream(target)))
         ) {
             String line;
             while ((line = br.readLine()) != null) {
-                int key = Integer.parseInt(line.substring(0, 3));
-                if (key >= 400 && key <= 500) {
-                    s.add(line);
+                list.add(line);
+            }
+            String first = null;
+            String last = null;
+            for (String s1 : list) {
+                if (first == null && (s1.startsWith("400") || s1.startsWith("500"))) {
+                    first = s1;
+                    out.print(first.substring(4));
+                } else if (first != null && (!s1.startsWith("400") && !s1.startsWith("500"))) {
+                    last = s1;
+                    out.println(" ; " + last.substring(4) + ";");
+                    first = null;
                 }
             }
-            out.println(s.get(0).substring(4)
-                    + System.lineSeparator() + s.get(s.size() - 1).substring(4));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
