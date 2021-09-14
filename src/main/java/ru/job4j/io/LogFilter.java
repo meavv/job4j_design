@@ -20,7 +20,9 @@ public class LogFilter {
     public static void save(List<String> log, String file) {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(new FileOutputStream(file)))) {
-            out.println(log);
+            for (String s : log) {
+                out.println(s);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
