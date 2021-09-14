@@ -7,15 +7,14 @@ import java.util.stream.Collectors;
 
 public class LogFilter {
     public static List<String> filter(String file) {
-        BufferedReader bufferedReader = null;
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            return Objects.requireNonNull(bufferedReader).lines()
+                    .filter(a -> a.contains("404"))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return Objects.requireNonNull(bufferedReader).lines()
-                .filter(a -> a.contains("404"))
-                .map(a -> a + System.lineSeparator()).collect(Collectors.toList());
+        return null;
     }
 
     public static void save(List<String> log, String file) {
