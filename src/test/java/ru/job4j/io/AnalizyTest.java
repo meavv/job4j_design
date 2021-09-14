@@ -33,7 +33,7 @@ public class AnalizyTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertThat(rsl.toString(), is("10:57:01" + "11:01:02"));
+        assertThat(rsl.toString(), is("10:57:01 ; 11:02:02;"));
     }
 
 }
