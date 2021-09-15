@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.util.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ public class LogFilter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return Collections.emptyList();
     }
 
     public static void save(List<String> log, String file) {
