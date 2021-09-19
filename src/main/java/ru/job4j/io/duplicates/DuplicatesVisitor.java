@@ -1,6 +1,5 @@
 package ru.job4j.io.duplicates;
 
-import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
@@ -9,21 +8,19 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    public ArrayList<FileProperty> getArrayList() {
-        return arrayList;
-    }
-
-    ArrayList<FileProperty> arrayList = new ArrayList<>();
+    private final Set<FileProperty> set = new HashSet<>();
 
     public static String convert(String s) {
         return s.replaceFirst("[.][^.]+$", "");
     }
 
     @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         FileProperty fileProperty = new FileProperty(file.toFile().length(),
                 convert(file.getFileName().toString()));
-        arrayList.add(fileProperty);
-        return super.visitFile(file, attrs);
+        if (!set.add(fileProperty)) {
+            System.out.println(fileProperty);
+        }
+        return FileVisitResult.CONTINUE;
     }
 }
