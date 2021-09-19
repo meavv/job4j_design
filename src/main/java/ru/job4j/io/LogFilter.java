@@ -10,18 +10,7 @@ public class LogFilter {
     public static List<String> filter(String file) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             return Objects.requireNonNull(bufferedReader).lines()
-                    .filter(a -> {
-                                boolean b;
-                                String[] s = a.split(" ");
-                                try {
-                                    int i = Integer.parseInt(s[s.length - 1]);
-                                    b = true;
-                                } catch (NumberFormatException e) {
-                                    b = false;
-                                }
-                                return  b && s[s.length - 2].equals("404");
-                            }
-                    )
+                    .filter(a -> a.contains(" 404 "))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
