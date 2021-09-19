@@ -9,13 +9,13 @@ public class Analize {
     public static Info diff(Set<User> previous, Set<User> current) {
         int added = 0;
         int changed = 0;
-        Map<Object, Object> hashMap = previous.stream()
+        Map<Object, Object> previousMap = previous.stream()
                 .collect(Collectors.toMap(User::getId, User::getName));
         for (User u : current) {
-            if (!hashMap.containsKey(u.getId())) {
+            if (!previousMap.containsKey(u.getId())) {
                 added++;
             } else {
-                if (!hashMap.get(u.getId()).equals(u.getName())) {
+                if (!previousMap.get(u.getId()).equals(u.getName())) {
                     changed++;
                 }
             }
