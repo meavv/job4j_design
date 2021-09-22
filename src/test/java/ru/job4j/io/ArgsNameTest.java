@@ -29,4 +29,15 @@ public class ArgsNameTest {
     public void whenWrongSomeArgument() {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test() {
+        ArgsName jvm = ArgsName.of(new String[] {"=Asd"});
+    }
+
+    @Test
+    public void test2() {
+        ArgsName jvm = ArgsName.of(new String[] {"encoding=UTF-8", "Xmx=512"});
+        assertThat(jvm.get("Xmx"), is("512"));
+    }
 }
