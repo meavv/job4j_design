@@ -49,13 +49,12 @@ public class ConsoleChat {
     }
 
     private void readPhrases() {
-        List<String> list = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(botAnswers))) {
-            list = br.lines().collect(Collectors.toList());
+            dialog = br.lines().collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        dialog = list;
+
     }
 
     private void saveLog() {
