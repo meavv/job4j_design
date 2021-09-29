@@ -11,6 +11,10 @@ public class ArgsName {
         return values.get(key);
     }
 
+    public int getSize() {
+        return values.size();
+    }
+
     private void parse(String[] args) {
         for (String s : args) {
             var arrayString = s.split("=");
