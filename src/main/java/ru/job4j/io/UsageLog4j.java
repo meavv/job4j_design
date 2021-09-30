@@ -16,6 +16,7 @@ public class UsageLog4j {
         float weight = 74.54987f;
         double height = 177.5;
         char sex = 'm';
-        LOG.debug("name : {}, age : {}, cash : {}, hand : {}, goodBoy: {}, weight: {}, height : {}, sex: {}", name, age, cash, hand, goodBoy, weight, height, sex);
+        LOG.debug("name : {}, age : {}, cash : {}, hand : {}, goodBoy: {}, weight: {}, height : {}, sex: {}",
+                name, age, cash, hand, goodBoy, weight, height, sex);
     }
 }
