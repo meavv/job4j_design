@@ -18,7 +18,7 @@ public class CSVReader {
         }
     }
 
-    public static void handle(ArgsName argsName) throws IOException {
+    public static void handle(ArgsName argsName) {
         validation(argsName);
         StringBuilder rsl = new StringBuilder();
         List<String[]> list = new ArrayList<>();
@@ -28,7 +28,6 @@ public class CSVReader {
                 var x = scanner.next().split(argsName.get("delimiter"));
                 list.add(x);
             }
-            scanner.close();
             List<Integer> indexFilter = new ArrayList<>();
             var s = Arrays.stream(list.get(0)).collect(Collectors.toList());
             for (String s1 : argsName.get("filter").split(",")) {
@@ -39,6 +38,8 @@ public class CSVReader {
                 rsl.append(temp.get(indexFilter.get(0))).append(";")
                         .append(temp.get(indexFilter.get(1))).append(System.lineSeparator());
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         if (argsName.get("out").equals("stdout")) {
             System.out.print(rsl);
