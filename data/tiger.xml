@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<tiger striped="true" age="12">
+    <animal family="Cat"/>
+    <habitats>
+        <habitat>Russia</habitat>
+        <habitat>China</habitat>
+    </habitats>
+</tiger>
