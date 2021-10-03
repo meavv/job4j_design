@@ -1,29 +1,31 @@
 package ru.job4j.serialization.java.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
+@XmlRootElement(name = "tiger")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Tiger {
 
-    private final boolean striped;
-    private final int age;
-    private final String name;
-    private final Animal animal;
-    private final String[] habitat;
+    @XmlAttribute
+    private boolean striped;
+
+    @XmlAttribute
+    private int age;
+
+    @XmlAttribute
+    private String name;
+
+    private Animal animal;
+
+    @XmlElementWrapper(name = "habitats")
+    @XmlElement(name = "habitat")
+    private String[] habitat;
 
 
-    public static void main(String[] args) {
-        Tiger tiger = new Tiger(true, 12, "Qwe",
-                new Animal("Cat"), "Russia", "China");
-        System.out.println(tiger);
 
-        Gson gson = new GsonBuilder().create();
-        var tigerJson = gson.toJson(tiger);
-        System.out.println(tigerJson);
-        Tiger tigerMod = gson.fromJson(tigerJson, Tiger.class);
-        System.out.println(tigerMod);
+    public Tiger() {
+
     }
 
 

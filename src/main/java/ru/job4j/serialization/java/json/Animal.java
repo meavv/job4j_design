@@ -1,10 +1,20 @@
 package ru.job4j.serialization.java.json;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "animal")
 public class Animal {
-    private final String family;
+
+    @XmlAttribute
+    private String family;
 
     public Animal(String family) {
         this.family = family;
+    }
+
+    public Animal() {
+
     }
 
     @Override
