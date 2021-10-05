@@ -43,4 +43,24 @@ public class Tiger {
                 + ", name='" + name + '\'' + ", animal=" + animal
                 + ", habitat=" + Arrays.toString(habitat) + '}';
     }
+
+    public boolean isStriped() {
+        return striped;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public String[] getHabitat() {
+        return habitat;
+    }
 }
