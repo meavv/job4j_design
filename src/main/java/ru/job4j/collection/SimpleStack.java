@@ -4,12 +4,16 @@ public class SimpleStack<T> {
 
     private ForwardLinked<T> linked = new ForwardLinked<T>();
 
-    // Метод pop() - должен возвращать значение и удалять его из коллекции.
+    /**
+     * Метод pop() - должен возвращать значение и удалять его из коллекции.
+     **/
     public T pop() {
         return (T) linked.deleteFirst();
     }
 
-    // Метод push(T value) - помещает значение в коллекцию.
+    /**
+     * Метод push(T value) - помещает значение в коллекцию.
+     **/
     public void push(T value) {
         linked.addFirst(value);
     }
