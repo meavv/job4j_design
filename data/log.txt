@@ -1,3 +1,0 @@
-C:\Users\e.malgin\IdeaProjects\job4j_design\data\dialog.txt
-C:\Users\e.malgin\IdeaProjects\job4j_design\data\server.txt
-C:\Users\e.malgin\IdeaProjects\job4j_design\data\target.txt
