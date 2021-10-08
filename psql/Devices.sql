@@ -46,4 +46,4 @@ group by people.name;
 
 select people.name, avg(devices.price) from devices_people as dp join devices on dp.device_id = devices.id join people on dp.people_id = people.id
 group by people.name
-having avg(devices.price) < 3000;
+having avg(devices.price) > 5000;
