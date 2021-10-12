@@ -3,6 +3,7 @@ package ru.job4j.jdbc;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -22,10 +23,14 @@ public class TableEditor implements AutoCloseable {
         initConnection();
     }
 
-    public static void start() throws Exception {
+    public static void start() {
         Properties properties = new Properties();
-        properties.load(new BufferedReader(new FileReader("data/app.properties")));
-        TableEditor tableEditor = new TableEditor(properties);
+        try (BufferedReader b = new BufferedReader(new FileReader("data/app.properties"))) {
+            properties.load(b);
+            TableEditor tableEditor = new TableEditor(properties);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
