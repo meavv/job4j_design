@@ -68,7 +68,7 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public void addColumn(String tableName, String columnName, String type) throws Exception {
+    public static void addColumn(String tableName, String columnName, String type) throws Exception {
         start();
         try (Connection connection = getConnection()) {
             try (Statement statement = connection.createStatement()) {
@@ -81,7 +81,7 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public void dropColumn(String tableName, String columnName) throws Exception {
+    public static void dropColumn(String tableName, String columnName) throws Exception {
         start();
         try (Connection connection = getConnection()) {
             try (Statement statement = connection.createStatement()) {
@@ -94,7 +94,7 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
+    public static void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
         start();
         try (Connection connection = getConnection()) {
             try (Statement statement = connection.createStatement()) {
