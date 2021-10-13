@@ -14,7 +14,7 @@ public class ConnectionDemo {
         String url = config.value("url");
         String login = config.value("login");
         String pass = config.value("password");
-        Class.forName("org.postgresql.Driver");
+        Class.forName(config.value("driver"));
         try (Connection connection = DriverManager.getConnection(url, login, pass)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
