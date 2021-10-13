@@ -3,14 +3,13 @@ package ru.job4j.jdbc;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
 
 public class TableEditor implements AutoCloseable {
 
-    private  Connection connection;
+    private static Connection connection;
 
     private final Properties properties;
 
@@ -21,8 +20,8 @@ public class TableEditor implements AutoCloseable {
 
     private void initConnection() throws Exception {
         try (BufferedReader b = new BufferedReader(new FileReader("data/app.properties"))) {
-            Class.forName("org.postgresql.Driver");
             properties.load(b);
+            Class.forName(properties.get("driver").toString());
             connection = DriverManager.getConnection(properties.get("url").toString(),
                     properties.get("login").toString(), properties.get("password").toString());
         } catch (Exception e) {
@@ -30,56 +29,32 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
+    public static void executePro(String format) throws Exception {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(format);
+        }
+    }
 
     public void createTable(String tableName) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = String.format(
-                        "create table %s();",
-                        tableName
-                );
-                statement.execute(sql);
-                System.out.println(getTableScheme(connection, tableName));
-            }
+        executePro(String.format("create table %s();", tableName));
     }
 
     public void dropTable(String tableName) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = String.format(
-                        "drop table %s;",
-                        tableName
-                );
-                statement.execute(sql);
-            }
+        executePro(String.format("drop table %s;", tableName));
     }
 
     public void addColumn(String tableName, String columnName, String type) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = String.format(
-                        "ALTER TABLE %s ADD COLUMN %s %s;",
-                        tableName, columnName, type
-                );
-                statement.execute(sql);
-            }
+        executePro(String.format("ALTER TABLE %s ADD COLUMN %s %s;", tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = String.format(
-                        "ALTER TABLE %s DROP COLUMN %s;",
-                        tableName, columnName
-                );
-                statement.execute(sql);
-            }
+        executePro(String.format("ALTER TABLE %s DROP COLUMN %s;", tableName, columnName));
+
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = String.format(
-                        "ALTER TABLE %s RENAME COLUMN %s TO %s;",
-                        tableName, columnName, newColumnName
-                );
-                statement.execute(sql);
-            }
+        executePro(String.format("ALTER TABLE %s RENAME COLUMN %s TO %s;",
+                tableName, columnName, newColumnName));
     }
 
 
