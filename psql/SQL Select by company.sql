@@ -9,5 +9,6 @@ having  count(person.name) in (
 SELECT count(person.name) as count
 FROM company  join person on person.company_id = company.id
 GROUP BY company.name
+	order by count(person.name) DESC
 	limit 1
 )
