@@ -2,8 +2,8 @@ package ru.job4j.gc;
 
 public class User {
 
-    private int id; // 4 байта
-    private String name; // 40 байт
+    private int id;
+    private String name;
 
     public User(int id, String name) {
         this.id = id;
