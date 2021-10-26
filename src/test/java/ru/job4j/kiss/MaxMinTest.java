@@ -18,7 +18,7 @@ public class MaxMinTest {
 
     @Test
     public void max() {
-        List<Integer> list = List.of(1,2,3,4,5,500);
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 500);
         Comparator<Integer> comparator = Comparator.naturalOrder();
         MaxMin m = new MaxMin();
         int r = m.max(list, comparator);
@@ -28,7 +28,7 @@ public class MaxMinTest {
 
     @Test
     public void min() {
-        List<Integer> list = List.of(1,2,3,4,5,500);
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 500);
         Comparator<Integer> comparator = Comparator.naturalOrder();
         MaxMin m = new MaxMin();
         int r = m.min(list, comparator);
