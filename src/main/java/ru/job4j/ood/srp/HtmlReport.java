@@ -18,8 +18,7 @@ public class HtmlReport implements Report, Save {
         HtmlReport h = new HtmlReport(store);
         StringBuilder text = new StringBuilder();
         for (Employee employee : store.findBy(filter)) {
-            text.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">")
-                    .append(System.lineSeparator()).append("<html>").append(System.lineSeparator())
+            text.append(System.lineSeparator()).append("<html>").append(System.lineSeparator())
                     .append("<body>").append(System.lineSeparator()).append("<h1>Report<h1>")
                     .append(System.lineSeparator())
                     .append("<p name ").append(employee.getName()).append(">").append(System.lineSeparator())

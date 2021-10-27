@@ -32,8 +32,7 @@ public class ReportEngineTest {
         store.add(worker);
         HtmlReport htmlReport = new HtmlReport(store);
         String expect =
-                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
-                + System.lineSeparator() + "<html>" + System.lineSeparator() + "<body>"
+                System.lineSeparator() + "<html>" + System.lineSeparator() + "<body>"
                 + System.lineSeparator() + "<h1>Report<h1>" + System.lineSeparator() + "<p name Ivan>"
                 + System.lineSeparator() + "<p hired " + worker.getHired().getTime() + ">" + System.lineSeparator()
                 + "<p fired " + worker.getFired().getTime() + ">" + System.lineSeparator()
