@@ -2,6 +2,7 @@ package ru.job4j.ood.srp;
 
 import java.util.Comparator;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class HRReport implements Report {
 
@@ -17,7 +18,7 @@ public class HRReport implements Report {
         StringBuilder text = new StringBuilder();
         text.append("Name; Salary;");
         var listSorted = store.findBy(filter).stream()
-                .sorted(Comparator.comparing(Employee::getSalary).reversed()).toList();
+                .sorted(Comparator.comparing(Employee::getSalary).reversed()).collect(Collectors.toList());
         for (Employee employee : listSorted) {
             text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")

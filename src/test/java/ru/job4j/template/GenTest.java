@@ -11,7 +11,7 @@ public class GenTest {
 
     @Ignore
     @Test
-    public void produce() throws Exception {
+    public void produce() {
         Generator generator = new Gen();
         String s = "I am a ${name}, Who are ${subject}? ";
         Map<String, String> map = Map.of("name", "Qwe", "subject", "you");
@@ -20,7 +20,7 @@ public class GenTest {
 
     @Ignore
     @Test(expected = IllegalArgumentException.class)
-    public void whenLessArgumentsThanTemplateNeedThenExpectException() throws Exception {
+    public void whenLessArgumentsThanTemplateNeedThenExpectException() {
         Generator generator = new Gen();
         String s = "I am a ${name}, Who are ${subt}? ";
         Map<String, String> map = Map.of("name", "Qwe", "subject", "you");
@@ -28,8 +28,8 @@ public class GenTest {
     }
 
     @Ignore
-    @Test
-    public void whenMapContainsExcessKeyThenException() throws Exception {
+    @Test(expected = Exception.class)
+    public void whenMapContainsExcessKeyThenException() {
         Generator generator = new Gen();
         String s = "I am a ${name}, Who are ${subject}? ";
         Map<String, String> map = Map.of("name", "Qwe", "subject", "you", "www", "WWW");
@@ -37,8 +37,8 @@ public class GenTest {
     }
 
     @Ignore
-    @Test(expected = IllegalArgumentException .class)
-    public void whenInvalidTemplateThenException() throws Exception {
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInvalidTemplateThenException() {
         Generator generator = new Gen();
         String s = "I am a {name}, Who are ${subject}? ";
         Map<String, String> map = Map.of("name", "Qwe", "subject", "you");
