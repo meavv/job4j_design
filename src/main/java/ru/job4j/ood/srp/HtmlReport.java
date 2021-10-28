@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.function.Predicate;
 
-public class HtmlReport implements Report, Save {
+public class HtmlReport implements Report {
 
     private Store store;
 
@@ -15,7 +15,7 @@ public class HtmlReport implements Report, Save {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        HtmlReport h = new HtmlReport(store);
+        HtmlReport htmlReport = new HtmlReport(store);
         StringBuilder text = new StringBuilder();
         for (Employee employee : store.findBy(filter)) {
             text.append(System.lineSeparator()).append("<html>").append(System.lineSeparator())
@@ -27,16 +27,6 @@ public class HtmlReport implements Report, Save {
                     .append("<p salary ").append(employee.getSalary()).append(">").append(System.lineSeparator())
                     .append("</body>").append(System.lineSeparator()).append("</html>");
         }
-        h.save(text.toString());
         return text.toString();
-    }
-
-    @Override
-    public void save(String s) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data/report.html"))) {
-            bufferedWriter.write(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

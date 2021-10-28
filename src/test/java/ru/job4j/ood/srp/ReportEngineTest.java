@@ -2,6 +2,8 @@ package ru.job4j.ood.srp;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 import java.util.Calendar;
 
@@ -61,10 +63,11 @@ public class ReportEngineTest {
     @Test
     public void whenBuhGenerated() {
         MemStore store = new MemStore();
+        ConvertSalary convertSalary = new Convert();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        BuhReport engine = new BuhReport(store);
+        BuhReport engine = new BuhReport(store, convertSalary);
         String expect = "Name; Hired; Fired; Salary;"
                 + System.lineSeparator()
                 + worker.getName() + ";"
