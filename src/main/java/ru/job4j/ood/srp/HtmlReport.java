@@ -15,7 +15,6 @@ public class HtmlReport implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        HtmlReport htmlReport = new HtmlReport(store);
         StringBuilder text = new StringBuilder();
         for (Employee employee : store.findBy(filter)) {
             text.append(System.lineSeparator()).append("<html>").append(System.lineSeparator())

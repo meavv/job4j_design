@@ -15,7 +15,6 @@ public class BuhReport implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        BuhReport buhReport = new BuhReport(store, convertSalary);
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;");
         for (Employee employee : store.findBy(filter)) {
