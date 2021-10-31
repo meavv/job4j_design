@@ -3,8 +3,13 @@ package ru.job4j.ood.srp;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import org.checkerframework.checker.units.qual.C;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.Test;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.util.Calendar;
 
 public class ReportEngineTest {
@@ -76,5 +81,45 @@ public class ReportEngineTest {
                 + worker.getSalary() * 0.85 + ";"
                 + System.lineSeparator();
         assertThat(engine.generate(em -> true), is(expect));
+    }
+
+    @Test
+    public void whenJsonGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Gson gson = new GsonBuilder().create();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        JsonReport engine = new JsonReport(store);
+        String expect = "Name; Hired; Fired; Salary;"
+                + System.lineSeparator()
+                + worker.getName() + ";"
+                + worker.getHired() + ";"
+                + worker.getFired() + ";"
+                + worker.getSalary() + ";"
+                + System.lineSeparator();
+        assertThat(engine.generate(em -> true), is(gson.toJson(expect)));
+    }
+
+    @Test
+    public void whenXmlGenerated() {
+        MemStore store = new MemStore();
+        String xml = "";
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        XmlReport engine = new XmlReport(store);
+        try {
+            JAXBContext context = JAXBContext.newInstance(Employee.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            StringWriter writer = new StringWriter();
+            marshaller.marshal(worker, writer);
+            xml = writer.getBuffer().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertThat(engine.generate(em -> true), is(xml));
     }
 }

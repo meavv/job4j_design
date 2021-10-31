@@ -1,8 +1,5 @@
 package ru.job4j.ood.srp;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.function.Predicate;
 
 public class HtmlReport implements Report {
