@@ -8,4 +8,6 @@ public interface Store {
 
     List<Food> get();
 
+    boolean accept(Food food);
+
 }

@@ -20,6 +20,11 @@ public class Trash implements Store {
     }
 
     @Override
+    public boolean accept(Food food) {
+        return food.daysExpired() > food.diffDays();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

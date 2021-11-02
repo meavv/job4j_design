@@ -20,6 +20,11 @@ public class SaleShop implements Store {
     }
 
     @Override
+    public boolean accept(Food food) {
+        return food.daysExpired() > food.expire75();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

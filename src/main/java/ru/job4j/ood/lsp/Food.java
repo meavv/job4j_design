@@ -1,23 +1,18 @@
 package ru.job4j.ood.lsp;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Food {
 
-    String name;
-    LocalDate expiryDate;
-    LocalDate createDate;
-    double price;
-    double discount;
+    private String name;
+    private LocalDate expiryDate;
+    private LocalDate createDate;
+    private double price;
+    private double discount;
+    private final LocalDate toDay = LocalDate.now();
 
-    public Food(String name, LocalDate expiryDate, LocalDate createDate, double price, double discount) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.createDate = createDate;
-        this.price = price;
-        this.discount = discount;
-    }
 
     public String getName() {
         return name;
@@ -58,4 +53,34 @@ public class Food {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
+
+    public LocalDate getToDay() {
+        return toDay;
+    }
+
+    public Food(String name, LocalDate expiryDate, LocalDate createDate, double price, double discount) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.createDate = createDate;
+        this.price = price;
+        this.discount = discount;
+    }
+
+    public long diffDays() {
+       return Duration.between(createDate.atStartOfDay(), expiryDate.atStartOfDay()).toDays();
+    }
+
+    public long daysExpired() {
+        return Duration.between(createDate.atStartOfDay(), toDay.atStartOfDay()).toDays();
+    }
+
+    public double expire25() {
+        return diffDays() * 0.25;
+    }
+
+    public double expire75() {
+        return diffDays() * 0.75;
+    }
+
+
 }
