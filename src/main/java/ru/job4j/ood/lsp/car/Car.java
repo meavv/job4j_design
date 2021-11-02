@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.Car;
+package ru.job4j.ood.lsp.car;
 
 public interface Car {
 
