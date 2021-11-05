@@ -19,8 +19,6 @@ public class ControlQualityTest {
         storeList.add(new Warehouse());
         storeList.add(new Trash());
         storeList.add(new Shop());
-        storeList.add(new SaleShop());
-
     }
 
     @Test
@@ -52,11 +50,11 @@ public class ControlQualityTest {
 
     @Test
     public void whenSaleShop() {
-        Store store = new SaleShop();
         ControlQuality controlQuality = new ControlQuality(storeList);
-        Food meat = new Meat("Мясо", LocalDate.of(2021, 11, 2),
-                LocalDate.of(2021, 10, 15), 100, 0);
-        assertEquals(store, controlQuality.control(meat));
+        Food meat = new Meat("Мясо", LocalDate.of(2021, 11, 6),
+                LocalDate.of(2021, 11, 1), 100, 0);
+        controlQuality.control(meat);
+        assertEquals(100, meat.getDiscount(), 0);
     }
 
 }

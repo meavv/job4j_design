@@ -7,22 +7,26 @@ import java.util.Objects;
 
 public class Warehouse implements Store {
 
-    final List<Food> wareHouse = new ArrayList<>();
+    private final List<Food> wareHouse = new ArrayList<>();
 
     @Override
-    public void add(Food food) {
-        wareHouse.add(food);
+    public boolean add(Food food) {
+        if (accept(food)) {
+            wareHouse.add(food);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Food> get() {
-        System.out.println("Warehouse");
-        return wareHouse;
+        List<Food> copyWareHouse = wareHouse;
+        return copyWareHouse;
     }
 
     @Override
     public boolean accept(Food food) {
-        return food.daysExpired() < food.expire25();
+        return daysExpired(food) < expire25(food);
     }
 
     @Override

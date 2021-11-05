@@ -6,22 +6,26 @@ import java.util.Objects;
 
 public class Trash implements Store {
 
-    final List<Food> trashList = new ArrayList<>();
+    private final List<Food> trashList = new ArrayList<>();
 
     @Override
-    public void add(Food food) {
-        trashList.add(food);
+    public boolean add(Food food) {
+        if (accept(food)) {
+            trashList.add(food);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Food> get() {
-        System.out.println("Trash");
-        return trashList;
+        List<Food> copyTrashList = trashList;
+        return copyTrashList;
     }
 
     @Override
     public boolean accept(Food food) {
-        return food.daysExpired() > food.diffDays();
+        return daysExpired(food) > diffDays(food);
     }
 
     @Override

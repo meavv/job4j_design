@@ -6,22 +6,30 @@ import java.util.Objects;
 
 public class Shop implements Store {
 
-    final List<Food> shopList = new ArrayList<>();
+    private final List<Food> shopList = new ArrayList<>();
 
     @Override
-    public void add(Food food) {
-        shopList.add(food);
+    public boolean add(Food food) {
+        if (accept(food)) {
+            shopList.add(food);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Food> get() {
-        System.out.println("Shop");
-        return shopList;
+        List<Food> copyShopList = shopList;
+        return copyShopList;
     }
 
     @Override
     public boolean accept(Food food) {
-        return food.daysExpired() < food.expire75();
+        if (daysExpired(food) > expire75(food)) {
+            food.setDiscount(100);
+            return true;
+        }
+        return daysExpired(food) < expire75(food);
     }
 
     @Override
