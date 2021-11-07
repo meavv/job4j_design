@@ -6,40 +6,83 @@ import java.util.ArrayList;
 
 public class Park implements Parking {
 
-    private ArrayList<Car> cars;
+    private final int placeAuto;
+    private final int placeTruck;
+    private int count = 0;
+
+    private int freePlaceAuto;
+    private int freePlatTruck;
+
+    private final Car[] cars;
+
+    public Park(int placeAuto, int placeTruck) {
+        this.placeAuto = placeAuto;
+        this.placeTruck = placeTruck;
+        freePlaceAuto = placeAuto;
+        freePlatTruck = placeTruck;
+        cars = new Car[placeAuto + placeTruck];
+    }
 
     @Override
     public int getPlacesPassAuto() {
-        return 0;
+        return placeAuto;
     }
 
     @Override
     public int getPlacesTrack() {
-        return 0;
+        return placeTruck;
     }
 
     @Override
     public int freePlacesPassAuto() {
-        return 0;
+        return freePlaceAuto;
     }
 
     @Override
     public int freePlacesTrack() {
-        return 0;
+        return freePlatTruck;
     }
 
     @Override
     public boolean addCar(Car car) {
-        return false;
+        boolean rsl = false;
+        if (car.getSize() == 1) {
+            if (freePlaceAuto > 0) {
+                cars[count] = car;
+                count++;
+                freePlaceAuto--;
+                rsl = true;
+            } else {
+                throw new ArrayIndexOutOfBoundsException("На парковке нет места");
+            }
+        } else {
+            if (freePlatTruck > 0) {
+                cars[count] = car;
+                count = count++;
+                freePlatTruck--;
+                rsl = true;
+            } else if (freePlaceAuto >= car.getSize()) {
+                cars[count] = car;
+                count = count + car.getSize();
+                freePlaceAuto = freePlaceAuto - car.getSize();
+                rsl = true;
+            } else {
+                throw new ArrayIndexOutOfBoundsException("На парковке нет места");
+            }
+        }
+        return rsl;
     }
 
     @Override
-    public ArrayList<Car> get() {
+    public Car[] get() {
         return cars;
     }
 
+
     @Override
-    public boolean delCar(Car car) {
-        return false;
+    public int size() {
+        return cars.length;
     }
+
+
 }
