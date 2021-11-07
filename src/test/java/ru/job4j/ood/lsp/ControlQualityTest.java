@@ -34,8 +34,8 @@ public class ControlQualityTest {
     public void whenTrash() {
         Store store = new Trash();
         ControlQuality controlQuality = new ControlQuality(storeList);
-        Food meat = new Meat("Мясо", LocalDate.of(2018, 11, 30),
-                LocalDate.of(2021, 10, 20), 100, 0);
+        Food meat = new Meat("Мясо", LocalDate.of(2021, 11, 6),
+                LocalDate.of(2021, 11, 5), 100, 0);
         assertEquals(store, controlQuality.control(meat));
     }
 
@@ -51,10 +51,10 @@ public class ControlQualityTest {
     @Test
     public void whenSaleShop() {
         ControlQuality controlQuality = new ControlQuality(storeList);
-        Food meat = new Meat("Мясо", LocalDate.of(2021, 11, 6),
-                LocalDate.of(2021, 11, 1), 100, 0);
+        Food meat = new Meat("Мясо", LocalDate.of(2021, 11, 7),
+                LocalDate.of(2021, 11, 5), 100, 0);
         controlQuality.control(meat);
-        assertEquals(100, meat.getDiscount(), 0);
+        assertEquals(50, meat.getDiscount(), 0);
     }
 
 }

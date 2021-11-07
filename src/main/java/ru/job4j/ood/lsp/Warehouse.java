@@ -20,13 +20,12 @@ public class Warehouse implements Store {
 
     @Override
     public List<Food> get() {
-        List<Food> copyWareHouse = wareHouse;
-        return copyWareHouse;
+        return new ArrayList<>(wareHouse);
     }
 
     @Override
     public boolean accept(Food food) {
-        return daysExpired(food) < expire25(food);
+        return getExpirationPercent(food) < 25;
     }
 
     @Override

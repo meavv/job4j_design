@@ -28,4 +28,13 @@ public interface Store {
         return diffDays(food) * 0.75;
     }
 
+    default double getExpirationPercent(Food food) {
+        var diffDays = Duration.between(food.getCreateDate().atStartOfDay(),
+                food.getExpiryDate().atStartOfDay()).toDays();
+        var daysExpired  = Duration.between(food.getCreateDate().atStartOfDay(),
+                LocalDate.now().atStartOfDay()).toDays();
+        return (100 / diffDays) * daysExpired;
+
+    }
+
 }

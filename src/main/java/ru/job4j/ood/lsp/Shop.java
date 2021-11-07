@@ -19,17 +19,16 @@ public class Shop implements Store {
 
     @Override
     public List<Food> get() {
-        List<Food> copyShopList = shopList;
-        return copyShopList;
+        return new ArrayList<>(shopList);
     }
 
     @Override
     public boolean accept(Food food) {
-        if (daysExpired(food) > expire75(food)) {
-            food.setDiscount(100);
+        if (getExpirationPercent(food) > 75) {
+            food.setDiscount(50);
             return true;
         }
-        return daysExpired(food) < expire75(food);
+        return getExpirationPercent(food) < 75;
     }
 
     @Override

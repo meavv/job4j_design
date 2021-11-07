@@ -16,7 +16,7 @@ public class ControlQuality {
                 return store;
             }
         }
-        return storeList.get(0);
+        return null;
     }
 
 }

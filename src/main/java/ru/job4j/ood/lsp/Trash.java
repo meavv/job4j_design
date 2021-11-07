@@ -19,13 +19,12 @@ public class Trash implements Store {
 
     @Override
     public List<Food> get() {
-        List<Food> copyTrashList = trashList;
-        return copyTrashList;
+        return new ArrayList<>(trashList);
     }
 
     @Override
     public boolean accept(Food food) {
-        return daysExpired(food) > diffDays(food);
+        return getExpirationPercent(food) > 100;
     }
 
     @Override
