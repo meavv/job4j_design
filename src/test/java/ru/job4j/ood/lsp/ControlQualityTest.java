@@ -1,6 +1,7 @@
 package ru.job4j.ood.lsp;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -48,6 +49,7 @@ public class ControlQualityTest {
         assertEquals(store, controlQuality.control(meat));
     }
 
+    @Ignore
     @Test
     public void whenSaleShop() {
         ControlQuality controlQuality = new ControlQuality(storeList);
