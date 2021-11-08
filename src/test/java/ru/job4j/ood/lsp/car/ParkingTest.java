@@ -19,7 +19,7 @@ public class ParkingTest {
         assertTrue(parking.addCar(car));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void whenAddAutoInvalid() {
         Parking parking = new Park(1, 0);
         Car car = new Auto();
@@ -32,7 +32,7 @@ public class ParkingTest {
         Parking parking = new Park(0, 1);
         Car car = new Truck(5);
         assertTrue(parking.addCar(car));
-        assertEquals(parking.freePlacesTrack(), 0);
+        assertEquals(parking.get().getFreePlatTruck(), 0);
     }
 
     @Test
@@ -40,15 +40,14 @@ public class ParkingTest {
         Parking parking = new Park(5, 0);
         Car car = new Truck(5);
         assertTrue(parking.addCar(car));
-        assertEquals(parking.freePlacesPassAuto(), 0);
+        assertEquals(parking.get().getFreePlaceAuto(), 0);
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void whenAddTruckButPlacesAllTaken() {
         Parking parking = new Park(4, 0);
         Car car = new Truck(5);
-        assertTrue(parking.addCar(car));
-        assertEquals(parking.freePlacesPassAuto(), 0);
+        assertFalse(parking.addCar(car));
     }
 
     @Test
@@ -56,7 +55,7 @@ public class ParkingTest {
         Parking parking = new Park(10, 10);
         Car car = new Auto();
         parking.addCar(car);
-        assertEquals(parking.getPlacesPassAuto() - 1, parking.freePlacesPassAuto());
+        assertEquals(parking.get().getPlaceAuto() - 1, parking.get().getFreePlaceAuto());
     }
 
     @Test
@@ -64,7 +63,7 @@ public class ParkingTest {
         Parking parking = new Park(10, 10);
         Car car = new Truck(4);
         parking.addCar(car);
-        assertEquals(parking.getPlacesTrack() - 1, parking.freePlacesTrack());
+        assertEquals(parking.get().getPlaceTruck() - 1, parking.get().getFreePlatTruck());
     }
 
     @Test
@@ -76,9 +75,8 @@ public class ParkingTest {
         parking.addCar(carTruck);
         parking.addCar(carTruck);
         parking.addCar(carTruck);
-        parking.addCar(carTruck);
         parking.addCar(car);
-        assertEquals(parking.freePlacesPassAuto(), 0);
+        assertEquals(parking.get().getFreePlaceAuto(), 4);
     }
 
     @Test
@@ -89,7 +87,7 @@ public class ParkingTest {
         parking.addCar(carTruck);
         parking.addCar(carTruck);
         parking.addCar(car);
-        assertEquals(parking.freePlacesPassAuto(), 0);
+        assertEquals(parking.get().getFreePlaceAuto(), 0);
     }
 
 
