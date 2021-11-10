@@ -1,26 +1,30 @@
 package ru.job4j.ood.isp;
 
-import java.util.List;
+import java.util.TreeSet;
 
 public class Menu {
 
-    public Menu(String name) {
-        this.name = name;
+    private final TreeSet<MenuItem> menuItems = new TreeSet<>();
+
+    void add(MenuItem parentName, String childName, Action action) {
+        parentName.getChildren().add(new MenuItem(childName, action));
     }
 
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    void add(MenuItem menuItem) {
+        menuItems.add(menuItem);
     }
 
 
-    @Override
-    public String toString() {
-        return name;
+    public static void main(String[] args) {
+        Action action = new Actions();
+        Menu menu = new Menu();
+        MenuItem q = new MenuItem("Пункт 1", action);
+        MenuItem w = new MenuItem("Пункт 2",  action);
+        menu.add(q);
+        menu.add(q, "1.1", action);
+        menu.add(w);
+        menu.add(w, "2.1", action);
+        System.out.println(menu.menuItems);
     }
+
 }

@@ -11,34 +11,10 @@ import java.util.regex.Pattern;
 
 public class Test {
 
-    int id;
-    String name;
 
+    final long string = 0;
 
-    public static void main(String[] args) throws IOException {
-        Test test = new Test();
-        test.setId(1);
-        test.setName("Q");
-        System.out.println(test.toString());
-    }
-
-    public String toString() {
-        return id + " : " + name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public static void main(String[] args) {
+        System.out.println();
     }
 }

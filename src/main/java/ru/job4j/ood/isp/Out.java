@@ -1,12 +1,9 @@
 package ru.job4j.ood.isp;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Out implements Output {
 
     @Override
-    public void println(Menu s) {
+    public void println(MenuItem s) {
         System.out.println(s);
     }
 
