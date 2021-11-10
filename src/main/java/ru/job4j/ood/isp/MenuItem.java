@@ -31,8 +31,12 @@ public class MenuItem implements Comparable<MenuItem> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         MenuItem menuItem = (MenuItem) o;
         return Objects.equals(parentName, menuItem.parentName) && Objects.equals(action, menuItem.action) && Objects.equals(children, menuItem.children);
     }
@@ -45,10 +49,9 @@ public class MenuItem implements Comparable<MenuItem> {
 
     @Override
     public String toString() {
-        return "MenuItem{" +
-                "parentName='" + parentName + '\'' +
-                ", action=" + action +
-                ", children=" + children +
-                '}';
+        return "MenuItem{" + "parentName='" + parentName + '\''
+                + ", action=" + action
+                + ", children=" + children
+                + '}';
     }
 }
