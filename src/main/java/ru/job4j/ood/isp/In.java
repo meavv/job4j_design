@@ -7,13 +7,13 @@ public class In implements Input {
     private Scanner scanner = new Scanner(System.in);
 
     @Override
-    public String input(String in) {
-        return (str(in));
+    public String printAndReadLine(String message) {
+        return readLine(message);
     }
 
     @Override
-    public String str(String q) {
-        System.out.println(q);
+    public String readLine(String message) {
+        System.out.println(message);
         return scanner.next();
     }
 }

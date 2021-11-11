@@ -2,29 +2,36 @@ package ru.job4j.ood.isp;
 
 import java.util.TreeSet;
 
-public class Menu {
+public class Menu implements MenuInterface {
 
     private final TreeSet<MenuItem> menuItems = new TreeSet<>();
 
-    void add(MenuItem parentName, String childName, Action action) {
-        parentName.getChildren().add(new MenuItem(childName, action));
+    @Override
+    public Action select(String nodeName) {
+        return null;
     }
 
-    void add(MenuItem menuItem) {
-        menuItems.add(menuItem);
+    @Override
+    public void add(String parentName, String childName, Action action) {
+        MenuItem item = new MenuItem(parentName);
+        MenuItem child = new MenuItem(childName);
+        item.getChildren().add(child);
+        menuItems.add(item);
     }
-
 
     public static void main(String[] args) {
-        Action action = new Actions();
         Menu menu = new Menu();
-        MenuItem q = new MenuItem("Пункт 1", action);
-        MenuItem w = new MenuItem("Пункт 2",  action);
-        menu.add(q);
-        menu.add(q, "1.1", action);
-        menu.add(w);
-        menu.add(w, "2.1", action);
-        System.out.println(menu.menuItems);
+        menu.add("Пункт 1", "Пункт 1.1", new Act());
+        menu.add("Пункт 1", "Пункт 1.2", new Act());
+        menu.add("Пункт 1", "Пункт 1.3", new Act());
+        menu.add("Пункт 2", "Пункт 2.1", new Act());
+        menu.add("Пункт 2", "Пункт 2.2", new Act());
+        System.out.println(menu);
+    }
+
+    @Override
+    public String toString() {
+        return menuItems.toString();
     }
 
 }
