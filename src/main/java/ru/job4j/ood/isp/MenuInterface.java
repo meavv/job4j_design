@@ -16,6 +16,22 @@ public interface MenuInterface {
             this.parentName = parentName;
         }
 
+        public String getParentName() {
+            return parentName;
+        }
+
+        public void setParentName(String parentName) {
+            this.parentName = parentName;
+        }
+
+        public Action getAction() {
+            return action;
+        }
+
+        public void setAction(Action action) {
+            this.action = action;
+        }
+
         private String parentName;
         private Action action;
 
