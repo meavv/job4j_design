@@ -32,6 +32,11 @@ public class Shop implements Store {
     }
 
     @Override
+    public void clear() {
+        shopList.clear();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -28,6 +28,11 @@ public class Trash implements Store {
     }
 
     @Override
+    public void clear() {
+        trashList.clear();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

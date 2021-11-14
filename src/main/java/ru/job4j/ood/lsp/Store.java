@@ -12,6 +12,8 @@ public interface Store {
 
     boolean accept(Food food);
 
+    void clear();
+
     default long diffDays(Food food) {
         return Duration.between(food.getCreateDate().atStartOfDay(), food.getExpiryDate().atStartOfDay()).toDays();
     }
@@ -36,5 +38,6 @@ public interface Store {
         return (100 / diffDays) * daysExpired;
 
     }
+
 
 }

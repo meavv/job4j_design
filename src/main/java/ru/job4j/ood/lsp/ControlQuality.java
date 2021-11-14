@@ -23,6 +23,7 @@ public class ControlQuality {
     public void resort() {
         List<Food> listFood = new ArrayList<>();
         storeList.forEach(a -> listFood.addAll(a.get()));
+        storeList.forEach(Store::clear);
         listFood.forEach(this::control);
     }
 
