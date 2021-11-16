@@ -1,8 +1,7 @@
 package ru.job4j.ood.isp;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.TreeSet;
 
 public interface MenuInterface {
 
@@ -35,11 +34,11 @@ public interface MenuInterface {
         private String parentName;
         private Action action;
 
-        public List<MenuItem> getChildren() {
+        public TreeSet<MenuItem> getChildren() {
             return children;
         }
 
-        private final List<MenuItem> children = new ArrayList<>();
+        private final TreeSet<MenuItem> children = new TreeSet<>();
 
 
 
@@ -69,8 +68,7 @@ public interface MenuInterface {
 
         @Override
         public String toString() {
-            return parentName + System.lineSeparator()
-                    + children + System.lineSeparator();
+            return parentName;
         }
 
     }
