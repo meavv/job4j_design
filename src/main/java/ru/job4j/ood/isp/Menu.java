@@ -42,6 +42,7 @@ public class Menu implements MenuInterface {
         for (MenuItem menuItem : child) {
             if (menuItem.getParentName().equals(name)) {
                 rsl = Optional.of(menuItem);
+                break;
             } else {
                 rsl = getMenuItem(name, menuItem.getChildren());
             }
@@ -52,12 +53,14 @@ public class Menu implements MenuInterface {
     public static void main(String[] args) {
         Menu menu = new Menu();
         Output output = new Out();
-        menu.add("Пункт 1", "--Пункт 1.1", new Act());
-        menu.add("Пункт 1", "--Пункт 1.2", new Act());
-        menu.add("Пункт 2", "--Пункт 2.1", new Act());
-        menu.add("Пункт 2", "--Пункт 2.2", new Act());
-        menu.add("Пункт 3", "--Пункт 3.1", new Act());
-        output.println(menu.getMenuItems());
+        menu.add("Пункт 1", "Пункт 1.1", new Act());
+        menu.add("Пункт 1", "Пункт 1.2", new Act());
+        menu.add("Пункт 1.1", "Пункт 1.1.1", new Act());
+        menu.add("Пункт 1.1", "Пункт 1.1.2", new Act());
+        menu.add("Пункт 2", "Пункт 2.1", new Act());
+        menu.add("Пункт 2.1", "Пункт 2.1.1", new Act());
+        menu.add("Пункт 2", "Пункт 2.2", new Act());
+        output.println(menu.menuItems);
     }
 
 
